@@ -42,7 +42,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 				fmt.Fprintf(w, "Unable to create the file for writing. Check your write access privilege")
 				return
 			}
-			_, err = io.Copy(out, file)
+			_, err = io.Copy(out, file) // file not files[i] !
 			if err != nil {
 				fmt.Fprintln(w, err)
 				return
