@@ -28,7 +28,7 @@ func handlefunc() {
 	http.HandleFunc("/home", displayHomePage)
 	http.HandleFunc("/upload_image", displayUploadImage)
 	http.HandleFunc("/upload", uploadFile)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":5432", nil)
 }
 
 func Server() {
