@@ -1,47 +1,64 @@
 package server
 
 import (
-	"fmt"
-	"html/template"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
+	"time"
+
+	"github.com/gorilla/mux"
 )
 
-func displayUploadImage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("OK")
-	t, err := template.ParseFiles("./site/templates/upload_image.html")
-	if err != nil {
-		log.Fatal("PANICCC")
-	}
-	t.ExecuteTemplate(w, "upl", nil)
+const listenAddr = "127.0.0.1:8080"
+
+type spaHandler struct {
+	staticPath string
+	indexPath  string
 }
 
-func displayHomePage(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./site/templates/home_page.html")
-	if err != nil {
-		log.Fatal("PANICCC")
+func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	path := filepath.Join(h.staticPath, r.URL.Path)
+
+	fi, err := os.Stat(path)
+	if os.IsNotExist(err) || fi.IsDir() {
+
+		http.ServeFile(w, r, filepath.Join(h.staticPath, h.indexPath))
+		return
 	}
-	t.Execute(w, nil)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	http.FileServer(http.Dir(h.staticPath)).ServeHTTP(w, r)
 }
 
 func handlefunc() {
-	http.HandleFunc("/home", displayHomePage)
-	http.HandleFunc("/upload_image", displayUploadImage)
-	http.HandleFunc("/upload", uploadFile)
-	http.ListenAndServe(":8080", nil)
+	rout := mux.NewRouter()
+	rout.HandleFunc("/", displayHomePage).Methods("GET")
+	rout.HandleFunc("/upload_image", displayUploadImage)
+	rout.HandleFunc("/upload_image/1", uploadFile)
+	http.Handle("/", rout)
+	spa := spaHandler{staticPath: "./site/templates/", indexPath: "home_page.html"}
+	rout.PathPrefix("/").Handler(spa)
+
+	srv := &http.Server{
+		Handler: rout,
+		Addr:    "127.0.0.1:8080",
+		// Good practice: enforce timeouts for servers you create!
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Fatal(srv.ListenAndServe())
+	//http.ListenAndServe(listenAddr, nil)
+
 }
 
 func Server() {
-	// port := os.Getenv("PORT")
-	// if port == "" {
-	// 	port = "8080"
-	// }
-
-	// mux := http.NewServeMux()
-
-	// mux.HandleFunc("/", Index)
-
-	// http.ListenAndServe(":"+port, mux)
 
 	handlefunc()
+
 }

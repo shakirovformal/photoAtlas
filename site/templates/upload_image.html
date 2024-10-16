@@ -1,4 +1,4 @@
-{{define "upl"}}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,12 +25,12 @@
     <!--mx-auto mt-5 w-25 p-3-->
     <form
     enctype="multipart/form-data"
-    action="/upload"
+    action="/upload_image/1"
     method="post"
   >
       <div class="position-absolute top-50 start-50 translate-middle">
         <div class="input-group">
-          <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="myFile" multiple>
+          <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="myFile" accept=".jpg,.jpeg,.png,.ico" multiple>
           <input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" data-loading-text="Loading..." value="Upload">
         </div>
     </form>
@@ -39,4 +39,3 @@
 
   </body>
 </html>
-{{end}}
