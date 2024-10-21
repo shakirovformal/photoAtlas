@@ -36,7 +36,12 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func handlefunc() {
+	log.Println("====================")
+	log.Println(ColorGreen, "SERVER IS STARTED  |", ColorReset)
+	log.Println("====================")
+
 	rout := mux.NewRouter()
+	rout.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	rout.HandleFunc("/", displayHomePage).Methods("GET")
 	rout.HandleFunc("/upload_image", displayUploadImage)
 	rout.HandleFunc("/upload_image/1", uploadFile)
@@ -51,10 +56,9 @@ func handlefunc() {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-
-	log.Fatal(srv.ListenAndServe())
+	srv.ListenAndServe()
+	//log.Fatal(srv.ListenAndServe())
 	//http.ListenAndServe(listenAddr, nil)
-
 }
 
 func Server() {

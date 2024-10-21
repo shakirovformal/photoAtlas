@@ -1,58 +1,35 @@
 package internal
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
+	"os"
 )
 
-type DataFile struct {
-	File_name     string
-	File_size     int
-	File_location string
+type Database struct {
+	host string
 }
 
-func (idf DataFile) FName() string {
-	return idf.File_name
-}
-
-func (idf DataFile) FSize() int {
-	return idf.File_size
-}
-
-func (idf DataFile) FLocation() string {
-	return idf.File_location
-}
-func (idf DataFile) getAllInfo() struct{} {
-	return struct{}{}
-}
-
-// Функция которая сама узнаёт всё о файле посредством информации о имени файла
-// TODO Сделать реализацию поиска файла и создания записи полученной информации в структуру DataFile
-func Get_info(filename string) {
-
+// Функция которая проверяет наличие файла в директории
+func Get_info_inDir(filename string) bool {
 	path := "././images/"
 
-	trace := searchFileinfo(path, filename)
-
-	fmt.Println(trace)
+	return searchFileinfo(path, filename)
 
 }
 
 func searchFileinfo(path, filename string) bool {
-	fmt.Println("look is", filename)
-	lst, err := ioutil.ReadDir(path)
+	lst, err := os.ReadDir(path)
 	if err != nil {
 		panic(err)
 	}
+	var res bool
 	for _, val := range lst {
-		if val.Name() == filename {
-			fmt.Println("file is found")
-			return true
-		} else {
-			return false
-			log.Fatal(err)
+		if filename == val.Name() {
+			res = true
+			return res
+		} else if filename != val.Name() {
+			res = false
 		}
 	}
-	return false
+
+	return res
 }

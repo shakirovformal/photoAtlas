@@ -7,6 +7,33 @@ import (
 	"net/http"
 )
 
+type UFileInfo struct {
+	pathtofile string
+	fileName   string
+	fileSize   string
+	location   string
+	download   string
+	count      []int
+}
+
+func NewUFileInfo(
+	pathtofile string,
+	fileName string,
+	fileSize string,
+	location string,
+	download string,
+	count []int,
+) UFileInfo {
+	return UFileInfo{
+		pathtofile: pathtofile,
+		fileName:   fileName,
+		fileSize:   fileSize,
+		location:   location,
+		download:   download,
+		count:      count,
+	}
+}
+
 func displayUploadImage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Now displaying Upload image page")
 	t, err := template.ParseFiles("./site/templates/upload_image.html")
@@ -25,7 +52,7 @@ func displayHomePage(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, nil)
 }
 
-func displayUploadedImage(w http.ResponseWriter, r *http.Request) {
+func displayUploadedImage(cnt []int, w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Now displaying image uploaded page")
 	t, err := template.ParseFiles("./site/templates/uploaded.html")
 	if err != nil {

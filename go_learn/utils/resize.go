@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"image/png"
+	"image/jpeg"
 	"log"
 	"os"
 
@@ -15,21 +15,21 @@ func Resize(path, filename string) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	img, errs := png.Decode(file)
+	img, errs := jpeg.Decode(file)
 	if errs != nil {
 		log.Fatal(err.Error())
+		recover()
 	}
 
 	file.Close()
 
 	m := resize.Resize(200, 0, img, resize.Bicubic)
 
-	out, err := os.Create(path + "resized_" + filename)
+	out, err := os.Create(path + "resized/resized_" + filename)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 	defer out.Close()
-	png.Encode(out, m)
+	jpeg.Encode(out, m, nil)
 	fmt.Println("File resized")
-
 }

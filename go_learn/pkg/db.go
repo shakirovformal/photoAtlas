@@ -8,33 +8,46 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
+type Database struct {
+	cnt int
+	// dbpg_addr  string
+	unique_id  string
+	name_file  string
+	file_exist bool
+}
+
 const dbpg_addr = "postgres://postgres:toor@localhost:5432/photoatlas"
 
-func DB_Select(file_name string) bool {
-	sql := "SELECT EXISTS(SELECT * FROM images_client_not_look WHERE name_file=$1)"
+func DB_Select(file_name string) int {
+	//sql1 := "SELECT unique_id, name_file FROM images"
+
+	sql2 := "SELECT COUNT(*) AS CNT FROM (SELECT * FROM images WHERE name_file=$1 LIMIT 1)"
+	//sql3 := "SELECT row_number() OVER (ORDER BY unique_id) AS i FROM images_client_not_look t"
 
 	ctx := context.Background()
 	db, err := pgx.Connect(ctx, dbpg_addr)
 	if err != nil {
 		log.Fatalf("failed to connect database: %v", err)
 	}
-	defer db.Close(ctx)
-	file_name = fmt.Sprint("'" + file_name + "'")
-	var temp_prov bool
-	err = db.QueryRow(ctx, sql, file_name).Scan(&temp_prov)
-	fmt.Printf("Проверяем наличие файла %s. Результат: %v. ", file_name, temp_prov)
-	if temp_prov == true {
-		fmt.Printf("Скачивать не будем\n")
-	} else if temp_prov == false {
-		fmt.Printf("Скачаем\n")
-	}
+
+	rows, err := db.Query(ctx, sql2, file_name)
 	if err != nil {
-		log.Fatalf("QueryRow failed: %v", err)
+		log.Fatal(err.Error())
+	}
+	var dbm Database
+	//for j := 0; j < 1; j++ {
+	for rows.Next() {
+
+		if err := rows.Scan(&dbm.cnt); err != nil {
+			log.Fatal(err)
+		}
+
 	}
 
-	//fmt.Println(err)
-	//fmt.Println("SQL Select ok")
-	return temp_prov
+	defer rows.Close()
+
+	db.Close(ctx)
+	return dbm.cnt
 }
 
 func DB_Delete() string {
@@ -56,8 +69,8 @@ func DB_Delete() string {
 	return "SQL Deleted ok"
 }
 
-func DB_Insert(first_var int, second_var string) string {
-	sql := "INSERT INTO images_client_not_look VALUES ($1,$2)"
+func DB_Insert(first_var string) string {
+	sql := "INSERT INTO images (name_file) VALUES ($1)"
 
 	ctx := context.Background()
 	db, err := pgx.Connect(ctx, dbpg_addr)
@@ -66,12 +79,12 @@ func DB_Insert(first_var int, second_var string) string {
 	}
 	defer db.Close(ctx)
 
-	rows, err := db.Query(ctx, sql, first_var, second_var)
+	rows, err := db.Query(ctx, sql, first_var)
 	if err != nil {
 		log.Fatalf("QueryRow failed: %v", err)
 	}
 	_ = rows
-	return fmt.Sprint("SQL insertion ok. Добавили в список %v", second_var)
+	return fmt.Sprint("SQL insertion ok. Добавили в список %v", first_var)
 }
 
 func Database_conn() {
@@ -85,4 +98,24 @@ func Database_conn() {
 	log.Println("Connect database succesful")
 
 	//fmt.Println("Отработал метод insert у интерфейса DB")
+}
+
+func DB_UpdateNameFile(first_var string) string {
+	sql := "UPDATE images SET name_file = $1 WHERE name_file = $2;"
+
+	ctx := context.Background()
+	db, err := pgx.Connect(ctx, dbpg_addr)
+	if err != nil {
+		log.Fatalf("failed to connect database: %v", err)
+	}
+	defer db.Close(ctx)
+
+	changed_name := first_var + "_unreachable"
+
+	rows, err := db.Query(ctx, sql, changed_name, first_var)
+	if err != nil {
+		log.Fatalf("QueryRow failed: %v", err)
+	}
+	_ = rows
+	return fmt.Sprint("SQL insertion ok. Добавили в список %v", first_var)
 }

@@ -1,15 +1,14 @@
---INSERT INTO images_client_not_look VALUES (1,'2.jpg')
 
---DELETE FROM images_client_not_look
+DELETE FROM images;
 
---INSERT INTO images_client_not_look VALUES ($1,$2)
+--INSERT INTO images (name_file) VALUES ('3.jpg');
 
---SELECT * FROM images_client_not_look WHERE name_file='4.jpg'
+-- SELECT * FROM images;
 
---CREATE INDEX idx_name_file ON images_client_not_look (name_file)
+-- UPDATE images SET name_file = '0.jpg_unreachable' WHERE name_file = '0.jpg';
 
---SELECT EXISTS (SELECT * FROM images_client_not_look WHERE LOWER(TRIM(name_file)) = LOWER(TRIM('3.jpg')))
+SELECT * FROM images;
 
---SELECT NOT EXISTS(SELECT * FROM images_client_not_look WHERE name_file=$1);
+--DELETE FROM images
 
-SELECT name_file FROM images_client_not_look
+-- SELECT COUNT(*) AS CNT FROM (SELECT * FROM images WHERE name_file='0.jpg' LIMIT 1)
