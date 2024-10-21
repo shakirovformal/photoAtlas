@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="690b432b-2afc-47ee-a9d3-f2f0b625278c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/cmd/app/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/cmd/app/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/internal/123.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/internal/datafiles.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/internal/datafiles.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/internal/resize.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/internal/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/pkg/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/pkg/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/PSQL.pgsql" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/server/PSQL.pgsql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/connector.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/server/connector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/server/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/server copy 2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/server copy.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_learn/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/go_learn/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/templates/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/templates/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/templates/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/templates/home_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/templates/upload_image.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/templates/upload_image.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/templates/uploaded.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/templates/uploaded.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2nULmswQjvHdj8NKiVA68ClaqiE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "ShowUsagesActions.previewPropertyKey": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/root/Desktop/test",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\root\Desktop\photoAtlas\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build go_learn/cmd/app/go_learn/cmd/app" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="photoAtlas" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go_learn/cmd/app/go_learn/cmd/app/" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/go_learn/cmd/app/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build go_learn/cmd/app/go_learn/cmd/app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/go_learn/pkg/db.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/go_learn/pkg/db.go</url>
+          <line>32</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/go_learn/pkg/db.go</url>
+          <line>38</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/go_learn/server/server.go</url>
+          <line>37</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
