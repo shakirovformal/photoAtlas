@@ -1,35 +1,21 @@
 package utils
 
 import (
-	"fmt"
-	"image/jpeg"
 	"log"
-	"os"
 
-	"github.com/nfnt/resize"
+	"github.com/disintegration/imaging"
 )
 
 func Resize(path, filename string) {
-	pathname := path + filename
-	file, err := os.Open(pathname)
+
+	src, err := imaging.Open(path + filename)
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatalf("failed to open image: %v", err)
 	}
-	img, errs := jpeg.Decode(file)
-	if errs != nil {
-		log.Fatal(err.Error())
-		recover()
-	}
-
-	file.Close()
-
-	m := resize.Resize(200, 0, img, resize.Bicubic)
-
-	out, err := os.Create(path + "resized/resized_" + filename)
+	src = imaging.Resize(src, 200, 0, imaging.Lanczos)
+	err = imaging.Save(src, path+"resized/resized_"+filename)
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatalf("failed to save image: %v", err)
 	}
-	defer out.Close()
-	jpeg.Encode(out, m, nil)
-	fmt.Println("File resized")
+
 }
